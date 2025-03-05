@@ -1,4 +1,4 @@
-#include <"lz77.hpp">
+#include "lz77.hpp"
 
 std::vector<std::pair<int, int>> compress(const std::string& s) {
 
@@ -9,10 +9,10 @@ std::vector<std::pair<int, int>> compress(const std::string& s) {
 	int substart = -1;
 
 	// iterating through each character of the string s
-	for(int i = 0; i < s.size(); i++) {
+	for(size_t i = 0; i < s.size(); i++) {
 
 		// checking for repetitive patterns in res
-		int j = (substart == -1) ? 0 : substart;
+		size_t j = (substart == -1) ? 0 : substart;
 		bool found = false;
 
 		// searching for the i-th char of s in the vector
@@ -33,7 +33,7 @@ std::vector<std::pair<int, int>> compress(const std::string& s) {
 			// if the lenght is one than we only have to make a new instance of a new char like (0, character)
 			std::pair<int, int> newPair;
 
-			if(len == 1) {
+			if(sublen == 1) {
 				newPair = std::make_pair(0, s.at(i));
 				res.push_back(newPair);
 			}
@@ -49,5 +49,7 @@ std::vector<std::pair<int, int>> compress(const std::string& s) {
 		}
 
 	}
+
+	return res;
 
 }
